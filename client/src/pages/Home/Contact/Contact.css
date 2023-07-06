@@ -1,0 +1,51 @@
+.area_contact {
+    height: 880px;
+    background-color: var(--primary-1);
+    margin-top: var(--margin-normal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.area_contact .form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.area_contact .form > h1 {
+    color: var(--primary-2);
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.area_contact .form .inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.area_contact .form > button {
+    width: 100%;
+    border: none;
+    background-color: var(--primary-2);
+    color: var(--primary-1);
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: .2s;
+}
+
+.area_contact .form > button:hover {
+    transform: scale(1.025);
+}

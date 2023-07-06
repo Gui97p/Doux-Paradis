@@ -1,0 +1,36 @@
+.textarea ::-webkit-scrollbar-thumb {
+    background-color: var(--primary-2);
+    border-radius: 20px;
+}
+  
+.textarea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--primary-2);
+    width: 100%;
+    scrollbar-color: var(--primary-2);
+}
+
+.textarea > label, .textarea > textarea {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    width: 100%;
+    padding-left: 5px;
+}
+
+.textarea > textarea {
+    height: 120px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--primary-2);
+    color: var(--primary-2);
+    caret-color: var(--primary-2);
+    resize:none;
+    padding-bottom: 10px;
+}
+
+.textarea > textarea:focus {
+    outline: none;
+}

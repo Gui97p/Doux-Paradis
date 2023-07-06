@@ -1,0 +1,36 @@
+.area_about {
+    margin-top: var(--margin-normal);
+}
+
+.area_about .container {
+    margin: 0 auto;
+    display: flex;
+}
+
+.area_about .container .about {
+    background-color: var(--primary-1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+.area_about .container .about > h1 {
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.area_about .container .about .texts {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.area_about .container .about .texts > p {
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    line-height: 28px;
+    width: 440px;
+    text-align: center;
+}
