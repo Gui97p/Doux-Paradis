@@ -1,10 +1,10 @@
+import connection from '../src/connection.mjs';
+
 class ProductsController {
   async getAll(req, res) {
-    return res.json();
-  }
+    const [products] = await connection.execute('SELECT * FROM products');
 
-  async getBetter(req, res) {
-    return res.json();
+    return res.json({products});
   }
 }
 

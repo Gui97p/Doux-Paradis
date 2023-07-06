@@ -1,6 +1,7 @@
 import express from 'express';
 
 import products from '../routes/products.mjs';
+import user from '../routes/user.mjs'
 
 class App {
   constructor() {
@@ -15,6 +16,7 @@ class App {
 
   routes() {
     this.server.use('/products', products);
+    this.server.use('user', user);
   }
 }
 
