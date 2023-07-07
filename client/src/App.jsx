@@ -1,12 +1,15 @@
 import React from 'react';
-import Home from './pages/Home/Home.jsx';
+import Header from './components/Header/Header.jsx';
+import Footer from './components/Footer/Footer.jsx';
+
+import { Outlet } from 'react-router-dom';
 
 function App() {
-    return (
-        <div>
-            <Home />
-        </div>
-    );
+    return (<div>
+        <Header />
+        <Outlet />
+        <Footer />
+    </div>);
 }
 
 export default App;

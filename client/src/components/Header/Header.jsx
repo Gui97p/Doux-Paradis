@@ -1,14 +1,16 @@
 import React from 'react';
 import './Header.css';
 
+import { Link } from 'react-router-dom';
+
 function Header() {
     return <header className="header">
         <div className="container normal_width">
-            <a href="#"><h1>Doux Paradis</h1></a>
+            <Link to="/"><h1>Doux Paradis</h1></Link>
             <nav className="nav">
-                <a href="#">Página inicial</a>
-                <a href="#">Produtos</a>
-                <a href="#">Reservas</a>
+                <Link to="/">Página inicial</Link>
+                <Link to="products">Produtos</Link>
+                <Link to="reservations">Reservas</Link>
             </nav>
         </div>
     </header>;
