@@ -1,5 +1,6 @@
 import express from 'express';
 import connect from './connection.mjs'
+import cors from 'cors'
 
 import products from '../routes/products.mjs';
 import user from '../routes/user.mjs'
@@ -17,14 +18,11 @@ class App {
   middlewares() {
     this.server.use(express.json());
     this.server.use(bodyParser.urlencoded({extended: true}))
-
-    this.server.use(function(req, res, next) {
-      res.status(404).json('Route not found');
-      next();
-    })
+    this.server.use(cors())
   }
 
   routes() {
+    this.server.get('/', (req, res) => res.send('Home'))
     this.server.use('/products', products);
     this.server.use('/users', user);
   }
