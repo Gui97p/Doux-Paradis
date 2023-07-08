@@ -6,7 +6,9 @@ import productsController from '../controllers/productsController.mjs';
 const routes = new Router();
 
 // Add routes
-routes.get('/', productsController.getAll);
-routes.post('/add', productsController.InsertProduct)
+routes.get('/', productsController.getAllProducts);
+routes.post('/add', productsController.insertProduct)
+// routes.put('/update', productsController.updateProduct)
+// routes.delete('/del', productsController.deleteProduct)
 
 export default routes;

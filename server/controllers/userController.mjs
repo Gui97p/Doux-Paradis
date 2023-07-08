@@ -1,4 +1,3 @@
-import { model } from "mongoose";
 import bcrypt from "bcrypt"
 import usersSchema from "../models/usersSchema.mjs";
 
@@ -7,7 +6,6 @@ class UserController {
 
   async register(req, res) {
     var { name, password, email, phone_number } = req.body;
-    console.log(typeof password)
     const User = usersSchema.model;
 
     var id = null;
@@ -16,13 +14,12 @@ class UserController {
       res.status(400).json('try again')
       throw e;
     });
-    docs.map(doc => id = doc.id)
+    docs.map(doc => id = doc.id);
     id = id++;
 
     name = name.trim();
     password = password.trim();
     password = bcrypt.hashSync(password, salt);
-    console.log(password)
     email = email.trim();
     phone_number = phone_number.trim();
 
