@@ -5,6 +5,7 @@ const salt = bcrypt.genSaltSync(10)
 class UserController {
 
   async register(req, res) {
+    return res.status(502).json('Not working yet')
     var { name, password, email, phone_number } = req.body;
     const User = usersSchema.model;
 
@@ -15,7 +16,7 @@ class UserController {
       throw e;
     });
     docs.map(doc => id = doc.id);
-    id = id++;
+    id = id === null? 1 : id + 1;
 
     name = name.trim();
     password = password.trim();
@@ -42,7 +43,7 @@ class UserController {
   }
 
   async login(req, res) {
-    return res.json('login');
+    return res.status(502).json('Not working yet')
   }
 }
 

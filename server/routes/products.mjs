@@ -7,8 +7,9 @@ const routes = new Router();
 
 // Add routes
 routes.get('/', productsController.getAllProducts);
-routes.post('/add', productsController.insertProduct)
-// routes.put('/update', productsController.updateProduct)
-// routes.delete('/del', productsController.deleteProduct)
+routes.get('/:id', productsController.GetOneProduct)
+routes.post('/', productsController.insertProduct)
+routes.put('/:id', productsController.updateProduct)
+routes.delete('/:id', productsController.deleteProduct)
 
 export default routes;
