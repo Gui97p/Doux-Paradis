@@ -28,13 +28,14 @@ class ProductsController {
 
     let executed = false
     const docs = await productsModel.find({ id: id });
+    console.log(docs)
     docs.map(doc => res.status(200).json({
       id: doc.id,
       name: doc.name,
       price: doc.price,
       image: doc.image
     }));
-    res.status(400).json("Product doesn't exit");
+    res.status(400).json("Product doesn't exit").catch(() => {});
   }
 
   async insertProduct(req, res) {
@@ -45,7 +46,6 @@ class ProductsController {
     const docs = await Product.find().limit(1).sort({$natural:-1})
     .catch(e => {
       res.status(400).json('try again')
-      throw e;
     });
     docs.map(doc => id = doc.id);
     id = id === null? 1 : id + 1;
@@ -65,7 +65,6 @@ class ProductsController {
 
     .catch(e => {
       res.status(400).json('Error on saving product');
-      throw e;
     });
   }
 
@@ -99,15 +98,12 @@ class ProductsController {
 
     const filter = { id: id };
 
-    console.log(filter, update);
-
     await productModel.findOneAndUpdate(filter, update)
     .then(() => {
       res.status(200).json('ok')
     })
     .catch(e => {
       res.status(400).json('Error on updating product');
-      throw e;
     });
   }
 
@@ -126,7 +122,6 @@ class ProductsController {
     })
     .catch(e => {
       res.status(400).json('Error on deleting Product');
-      throw e;
     })
   }
 }
