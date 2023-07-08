@@ -6,14 +6,12 @@ import Products from './Products/Products';
 import Contact from './Contact/Contact';
 
 function Home() {
-    return (  
-        <div>
-            <Welcome />
-            <About />
-            <Products />
-            <Contact />
-        </div>
-    );
+    return (<main>
+        <Welcome />
+        <About />
+        <Products />
+        <Contact />
+    </main>);
 }
 
 export default Home;
