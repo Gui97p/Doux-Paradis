@@ -1,4 +1,5 @@
 import express from 'express';
+import connect from './connection.mjs'
 
 import products from '../routes/products.mjs';
 import user from '../routes/user.mjs'
@@ -7,6 +8,8 @@ class App {
   constructor() {
     this.server = express();
     this.middlewares();
+    connect()
+
     this.routes();
   }
 
@@ -16,7 +19,7 @@ class App {
 
   routes() {
     this.server.use('/products', products);
-    this.server.use('user', user);
+    this.server.use('/users', user);
   }
 }
 

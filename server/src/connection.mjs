@@ -1,13 +1,10 @@
-import { createPool } from 'mysql2/promise';
+import { connect } from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config();
 
-const connection = createPool({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE
-});
+async function Connect() {
+    await connect(process.env.MONGO_CONNECTION).then(() => console.log('MongoDB connected'));
+}
 
-export default connection;
 
+export default Connect;
