@@ -25,7 +25,7 @@ class ProductsController {
 
     id = Number(id);
     if (id === NaN || id === undefined || id === null || id === 0) {
-      return res.status(400).json('ID not valid');
+      return res.status(406).json('ID not valid');
     }
 
     const docs = await productsModel.find({ id: id });
@@ -87,7 +87,7 @@ class ProductsController {
 
     id = Number(id);
     if (id === NaN || id === undefined || id === null || id === 0) {
-      return res.status(400).json('ID not valid');
+      return res.status(406).json('ID not valid');
     }
 
     if (typeof name === "string") {
@@ -102,6 +102,7 @@ class ProductsController {
       }
     }
 
+    price = Number(price)
     if (typeof price === 'number' && price !== NaN && price !== undefined && price !== null) {
       update["price"] = price;
     }
@@ -123,7 +124,7 @@ class ProductsController {
 
     id = Number(id);
     if (id === NaN || id === undefined || id === null || id === 0) {
-      return res.status(400).json('ID not valid');
+      return res.status(406).json('ID not valid');
     }
 
     await productsModel.findOneAndDelete({id: id})

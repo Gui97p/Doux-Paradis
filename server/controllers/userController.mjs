@@ -29,7 +29,7 @@ class UserController {
 
     id = Number(id);
     if (id === NaN || id === undefined || id === null || id === 0) {
-      return res.status(400).json('ID not valid');
+      return res.status(406).json('ID not valid');
     }
 
     const docs = await usersModel.find({ id: id });
@@ -46,20 +46,19 @@ class UserController {
   }
 
   async checkPassword(req, res) {
-    res.status(502).json('Not working yet');
     var { id } = req.params;
     var { password } = req.body;
     const usersModel = model('users');
 
     id = Number(id);
     if (id === NaN || id === undefined || id === null || id === 0) {
-      return res.status(400).json('ID not valid');
+      return res.status(406).json('ID not valid');
     }
 
     var enPassword = null;
     const docs = await usersModel.find({ id: id });
     docs.map(doc => enPassword = doc.password)
-    if (enPassword === null) return res.status(400).json('ID not valid');
+    if (enPassword === null) return res.status(406).json('ID not valid');
 
     const check = bcrypt.compareSync(password.trim(), enPassword);
 
@@ -100,7 +99,7 @@ class UserController {
   }
 
   async login(req, res) {
-    return res.status(502).json('Not working yet')
+    return res.status(501).json('Not working yet')
   }
 
   async updateUser(req, res) {
@@ -112,7 +111,7 @@ class UserController {
 
     id = Number(id);
     if (id === NaN || id === undefined || id === null || id === 0) {
-      return res.status(400).json('ID not valid');
+      return res.status(406).json('ID not valid');
     }
 
     if (typeof name === "string") {
@@ -156,7 +155,7 @@ class UserController {
 
     id = Number(id);
     if (id === NaN || id === undefined || id === null || id === 0) {
-      return res.status(400).json('ID not valid');
+      return res.status(406).json('ID not valid');
     }
 
     await usersModel.findOneAndDelete({id: id})
