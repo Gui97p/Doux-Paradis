@@ -46,6 +46,7 @@ class UserController {
   }
 
   async checkPassword(req, res) {
+    res.status(502).json('Not working yet');
     var { id } = req.params;
     var { password } = req.body;
     const usersModel = model('users');

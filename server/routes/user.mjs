@@ -9,7 +9,7 @@ const routes = new Router();
 routes.get('/', userController.getAllUsers)
 routes.get('/:id', userController.getOneUser)
 routes.get('/passwordCheck/:id', userController.checkPassword)
-routes.post('/register', userController.register);
+routes.post('/', userController.register);
 routes.post('/login', userController.login);
 routes.put('/:id', userController.updateUser)
 routes.delete('/:id', userController.deleteUser)
