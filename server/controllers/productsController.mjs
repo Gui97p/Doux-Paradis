@@ -4,7 +4,7 @@ import productsSchema from '../models/productsSchema.mjs'
 class ProductsController {
   async getAllProducts(req, res) {
     var products = [];
-    const ProductsModel = model('users');
+    const ProductsModel = model('products');
 
     const docs = await ProductsModel.find()
     docs.map(doc => products.push({
@@ -42,7 +42,7 @@ class ProductsController {
 
   async insertProduct(req, res) {
     var { name, price, image } = req.body;
-    const Product = model('users');
+    const Product = model('products');
 
     var id = null;
     const docs = await Product.find().limit(1).sort({$natural:-1})
