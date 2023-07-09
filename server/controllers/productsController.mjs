@@ -14,6 +14,8 @@ class ProductsController {
       image: doc.image
     }))
 
+    res.append('X-Total-Count', products.length);
+    res.append('Access-Control-Expose-Headers', 'X-Total-Count');
     return res.status(200).json(products);
   }
 
@@ -42,29 +44,31 @@ class ProductsController {
     var { name, price, image } = req.body;
     const Product = productsSchema.model;
 
-    var id = null;
     const docs = await Product.find().limit(1).sort({$natural:-1})
+    .then(() => {
+      var id = null;
+      docs.map(doc => id = doc.id);
+      id = id === null? 1 : id + 1;
+
+      name = name.trim();
+      image = image.trim();
+
+      new Product({
+        id: id,
+        name: name,
+        price: price,
+        image: image
+      })
+      .save()
+      
+      .then(() => res.status(200).json('ok'))
+
+      .catch(e => {
+        res.status(400).json('Error on saving product');
+      });
+    })
     .catch(e => {
       res.status(400).json('try again')
-    });
-    docs.map(doc => id = doc.id);
-    id = id === null? 1 : id + 1;
-
-    name = name.trim();
-    image = image.trim();
-
-    new Product({
-      id: id,
-      name: name,
-      price: price,
-      image: image
-    })
-    .save()
-    
-    .then(() => res.status(200).json('ok'))
-
-    .catch(e => {
-      res.status(400).json('Error on saving product');
     });
   }
 
