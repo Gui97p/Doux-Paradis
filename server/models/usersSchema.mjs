@@ -16,6 +16,10 @@ const UserSchema = Schema({
     },
     phone_number: {
         type: String
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 });
 

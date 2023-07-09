@@ -1,10 +1,10 @@
 import { model } from "mongoose";
-import productsSchema from "../models/productsSchema.mjs";
+import productsSchema from '../models/productsSchema.mjs'
 
 class ProductsController {
   async getAllProducts(req, res) {
     var products = [];
-    var ProductsModel = productsSchema.model;
+    const ProductsModel = model('users');
 
     const docs = await ProductsModel.find()
     docs.map(doc => products.push({
@@ -21,54 +21,60 @@ class ProductsController {
 
   async GetOneProduct(req, res) {
     var { id } = req.params;
-    var productsModel = model('products');
+    const productsModel = model('products');
 
     id = Number(id);
     if (id === NaN || id === undefined || id === null || id === 0) {
       return res.status(400).json('ID not valid');
     }
 
-    let executed = false
     const docs = await productsModel.find({ id: id });
-    console.log(docs)
     docs.map(doc => res.status(200).json({
       id: doc.id,
       name: doc.name,
       price: doc.price,
       image: doc.image
     }));
-    res.status(400).json("Product doesn't exit").catch(() => {});
+    try {
+      res.status(400).json("Product doesn't exit");
+    } catch {}
   }
 
   async insertProduct(req, res) {
     var { name, price, image } = req.body;
-    const Product = productsSchema.model;
+    const Product = model('users');
 
+    var id = null;
     const docs = await Product.find().limit(1).sort({$natural:-1})
-    .then(() => {
-      var id = null;
-      docs.map(doc => id = doc.id);
-      id = id === null? 1 : id + 1;
-
-      name = name.trim();
-      image = image.trim();
-
-      new Product({
-        id: id,
-        name: name,
-        price: price,
-        image: image
-      })
-      .save()
-      
-      .then(() => res.status(200).json('ok'))
-
-      .catch(e => {
-        res.status(400).json('Error on saving product');
-      });
-    })
     .catch(e => {
-      res.status(400).json('try again')
+      id = 1
+    });
+
+    if (docs !== null && docs !== undefined) docs.map(doc => id = doc.id);
+    id = id === null? 1 : id + 1;
+
+    if (typeof name != 'string') return res.status(400).json('Name passed is not valid');
+    if (typeof image != 'string') return res.status(400).json('Image passed is not valid');
+
+    name = name.trim();
+    if (typeof price == 'string') {
+      price = Number(price)
+      if (price === NaN || price === undefined || price === null) return res.status(400).json('Price passed is not valid');
+    }
+    image = image.trim();
+
+    new Product({
+      id: id,
+      name: name,
+      price: price,
+      image: image
+    })
+    .save()
+    
+    .then(() => res.status(200).json('ok'))
+
+    .catch(e => {
+      res.status(400).json('Error on saving product');
     });
   }
 
@@ -92,7 +98,7 @@ class ProductsController {
 
     if (typeof image === "string") {
       if (image.trim() !== '') {
-        update["image"] == image;
+        update["image"] = image;
       }
     }
 
@@ -113,14 +119,14 @@ class ProductsController {
 
   async deleteProduct(req, res) {
     var { id } = req.params;
-    const productmodel = model('products');
+    const productsModel = model('products');
 
     id = Number(id);
     if (id === NaN || id === undefined || id === null || id === 0) {
       return res.status(400).json('ID not valid');
     }
 
-    await productmodel.findOneAndDelete({id: id})
+    await productsModel.findOneAndDelete({id: id})
     .then(() => {
       res.status(200).json('ok')
     })
