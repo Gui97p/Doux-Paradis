@@ -4,7 +4,8 @@
     justify-content: flex-start;
     align-items: center;
     background-image: url("../../../imgs/Brownies1.png");
-    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
     padding: var(--padding-normal);
     margin-top: 100px;
 }

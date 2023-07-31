@@ -9,8 +9,8 @@ function Header() {
             <Link to="/"><h1>Doux Paradis</h1></Link>
             <nav className="nav">
                 <Link to="/">Página inicial</Link>
-                <Link to="products">Produtos</Link>
-                <Link to="reservations">Reservas</Link>
+                <Link to="/products">Produtos</Link>
+                <Link to="/reservations">Reservas</Link>
             </nav>
         </div>
     </header>;

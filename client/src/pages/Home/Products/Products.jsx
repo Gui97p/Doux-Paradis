@@ -12,7 +12,7 @@ function Products() {
             características importantes e exclusivas. Para adicionar uma loja online, 
             clique em "Adicionar", "Página" e, então, "Loja online" na lista.
             </p>
-            <div className="products">
+            <div className="content">
                 <ProductCard data={{name: 'Barra ao leite - Brigadeiro', price: 120}}/>
                 <ProductCard data={{name: 'Barra ao leite - Brigadeiro', price: 120}}/>
                 <ProductCard data={{name: 'Barra ao leite - Brigadeiro', price: 120}}/>
