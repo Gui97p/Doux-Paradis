@@ -21,6 +21,7 @@ export class UsersService {
       delete user['password'];
       return user;
     } catch (err) {
+      console.log(err)
       switch (err.code) {
         case 11000:
           throw new HttpException(
