@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { IdMiddleware } from 'src/middlewares/id.middleware';
 import { ProductsController } from './products.controller';
 import { ProductsService } from './products.service';
@@ -18,6 +23,12 @@ import { UsersModule } from 'src/users/users.module';
 export class ProductsModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(IdMiddleware).forRoutes('products/:id');
-    consumer.apply(AuthMiddleware).forRoutes('products', 'products/:id');
+    consumer
+      .apply(AuthMiddleware)
+      .exclude(
+        { path: 'products', method: RequestMethod.GET },
+        { path: 'products/:id', method: RequestMethod.GET },
+      )
+      .forRoutes('products', 'products/:id');
   }
 }
