@@ -13,8 +13,7 @@ The project is split across two branches: `client` for the frontend and `server`
 - **MongoDB + Mongoose** — flexible schema, good fit for a product catalog that kept changing during the project
 
 **Frontend (`client` branch)**
-- Vanilla JavaScript, CSS, HTML
-- Deployed on [Vercel](https://doux-paradis-psi.vercel.app)
+- React + plain CSS
 
 ---
 
